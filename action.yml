@@ -1,10 +1,14 @@
 name: 'Install HLint to be used with hlint-run'
 description: 'Cached download of hlint binary release to be used with hlint-run'
 inputs:
+  token:
+    description: The token to use when communicating with GitHub's API.
+    required: false
+    default: ${{ github.token }}
   version:
     description: 'hlint version'
     required: false
-    default: '3.5'
+    default: latest
 outputs:
   hlint-dir:
     description: 'Directory containing the hlint executable'
@@ -13,7 +17,7 @@ outputs:
   version:
     description: 'Version of the hlint tool (same as input, if provided)'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'arrow-down-circle'
